@@ -9,13 +9,13 @@ set(CMAKE_CXX_EXTENSIONS NO)
 enable_testing()
 include(FetchContent)
 
-# Download and make available googletest
+# Pobierz i udostêpnij googletest
 FetchContent_Declare(
 	googletest
 	GIT_REPOSITORY https://github.com/google/googletest.git
-	git_tag 075196ca060107d44b4e3a1f44b25886ed5bd187
+	GIT_TAG v1.15.1
 )
-# Force compatible CRT for MSVC
+# Wymuœ zgodne CRT dla MSVC
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
@@ -25,7 +25,7 @@ add_executable(${PROJECT_NAME} "src/main.cpp")
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/")
 target_link_libraries(${PROJECT_NAME} PRIVATE TEMPLATE_LIB)
 
-# Tests
+# Testy
 add_executable(${PROJECT_NAME}_tests "tests/test_example.cpp")
 target_include_directories(${PROJECT_NAME}_tests PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include/")
 target_link_libraries(${PROJECT_NAME}_tests PRIVATE GTest::gtest_main TEMPLATE_LIB)
