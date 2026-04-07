@@ -6,20 +6,20 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 set(CMAKE_CXX_EXTENSIONS NO)
 
-enable_testing()
-include(FetchContent)
+add_subdirectory(thirdParty)
+
+#enable_testing()
+#include(FetchContent)
 
 # Pobierz i udostêpnij googletest
-FetchContent_Declare(
-	googletest
-	GIT_REPOSITORY https://github.com/google/googletest.git
-	GIT_TAG v1.15.1
-)
+# FetchContent_Declare(
+# 	googletest
+# 	GIT_REPOSITORY https://github.com/google/googletest.git
+# 	GIT_TAG v1.15.1
+# )
 # Wymuœ zgodne CRT dla MSVC
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
-
-add_subdirectory(thirdParty/TEMPLATE_LIB)
+# FetchContent_MakeAvailable(googletest)
 
 add_executable(${PROJECT_NAME} "src/main.cpp")
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/")
