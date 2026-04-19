@@ -1,3 +1,6 @@
-set(CMAKE_CXX_STANDARD 17)
+#set(CMAKE_CXX_STANDARD 17)
+
+# make static gtest visible to tests targets in tests folder - propagate subproject include directories to parent
 ADD_SUBDIRECTORY(googletest)
 add_subdirectory(TEMPLATE_LIB)
+add_subdirectory(cmakeSetup-gamedevLibsExtern)
