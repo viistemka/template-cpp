@@ -12,3 +12,4 @@ TEST(namespaceTest, Addition)
 	EXPECT_EQ(TemplateNamespace::add<float>(2, 3), 5.0f);
 	EXPECT_EQ(TemplateNamespace::add<char>('a', 1), 'b');
 }
+

@@ -1,6 +1,19 @@
-#set(CMAKE_CXX_STANDARD 17)
-
 # make static gtest visible to tests targets in tests folder - propagate subproject include directories to parent
 ADD_SUBDIRECTORY(googletest)
 add_subdirectory(TEMPLATE_LIB)
-add_subdirectory(cmakeSetup-gamedevLibsExtern)
+
+include(FetchContent)
+
+set(SFML_VERSION "3.1.0")
+
+FetchContent_Declare(
+    sfml
+    GIT_REPOSITORY "https://github.com/SFML/SFML.git"
+    GIT_TAG        "${SFML_VERSION}"
+)
+
+FetchContent_GetProperties(sfml)
+if(NOT sfml_POPULATED)
+    FetchContent_Populate(sfml)
+    add_subdirectory(${sfml_SOURCE_DIR} ${sfml_BINARY_DIR})
+endif()

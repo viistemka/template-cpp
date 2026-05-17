@@ -7,8 +7,10 @@ set(CMAKE_CXX_EXTENSIONS NO)
 
 add_subdirectory(tests)
 add_subdirectory(thirdParty)
+ 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/")
 
 add_executable(${PROJECT_NAME} "src/main.cpp" "include/template_namespace.h")
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/")
-target_link_libraries(${PROJECT_NAME} PRIVATE TEMPLATE_LIB gamedev)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE TEMPLATE_LIB sfml-graphics sfml-window sfml-system)
