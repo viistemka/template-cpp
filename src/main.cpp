@@ -1,34 +1,39 @@
-#include <iostream>
-#include <format>
-#include "template_lib.h"
-#include "template_namespace.h"
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/System/Clock.hpp>
+#include <SFML/Window/Event.hpp>
 
-#include "sfml/Graphics.hpp"
+#include <imgui-SFML.h>
+#include <imgui.h>
 
 int main() {
+	ImGui::CreateContext();
+    sf::RenderWindow window(sf::VideoMode({ 1280, 720 }), "ImGui + SFML = <3");
+    window.setFramerateLimit(60);
+    ImGui::SFML::Init(window);
 
-    // Create the main window (width, height, title)
-    sf::RenderWindow window(sf::VideoMode({ 200, 200 }), "SFML Works!");
+    sf::Clock deltaClock;
+    while (window.isOpen()) {
 
-    // Create a graphical circle to fill with green color
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+        while (const std::optional event = window.pollEvent()) {
+            //ImGui::SFML::ProcessEvent(event);
 
-    // Start the game loop
-    while (window.isOpen())
-    {
-        // Process events
-        while (const std::optional event = window.pollEvent())
-        {
-            // Close window: exit
             if (event->is<sf::Event::Closed>())
+            {
                 window.close();
+                break;
+            }
         }
 
-        // Clear screen, draw the shape, and display it
+        ImGui::SFML::Update(window, deltaClock.restart());
+
+        ImGui::ShowDemoWindow();
+
         window.clear();
-        window.draw(shape);
+        ImGui::SFML::Render(window);
         window.display();
     }
-	return 0;
+
+    ImGui::SFML::Shutdown();
+
+    return 0;
 }
