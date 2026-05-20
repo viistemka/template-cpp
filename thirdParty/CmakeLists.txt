@@ -11,4 +11,8 @@ FetchContent_Declare(
     GIT_REPOSITORY "https://github.com/SFML/SFML.git"
     GIT_TAG        "${SFML_VERSION}"
 )
+<<<<<<< HEAD
 add_subdirectory(sfml)
+=======
+add_subdirectory(SFML)
+>>>>>>> refs/remotes/template-cpp/master

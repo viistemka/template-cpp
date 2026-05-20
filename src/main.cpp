@@ -30,8 +30,5 @@ int main() {
         window.draw(shape);
         window.display();
     }
-
-    return 0;
-
 	return 0;
 }
